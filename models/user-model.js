@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/minishop", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 const userSchema = new mongoose.Schema({
   fullname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
