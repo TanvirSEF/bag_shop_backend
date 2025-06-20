@@ -13,6 +13,7 @@ app.set("view engine", "ejs");
 app.use("/owners", require("./routes/owner-routes"));
 app.use("/users", require("./routes/user-routes"));
 app.use("/products", require("./routes/product-routes"));
+app.use("/", require("./routes/index"));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
