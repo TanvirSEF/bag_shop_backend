@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
+const debug = require("debug")("development:mongoose");
+const config = require("config");
 
 mongoose
-  .connect("mongodb://localhost:27017/minishop")
+  .connect(config.get("MONGODB_URI"))
   .then(() => {
-    console.log("Connected to MongoDB successfully");
+    debug("Connected to MongoDB successfully");
   })
   .catch((err) => {
-    console.error("Error connecting to MongoDB:", err);
+    debug("Error connecting to MongoDB:", err);
   });
 
 const db = mongoose.connection;
