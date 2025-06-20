@@ -10,7 +10,6 @@ const ownerSchema = new mongoose.Schema({
       phone: { type: String, required: true },
       address: { type: String, required: true },
     },
-    required: true,
   },
   createdAt: { type: Date, default: Date.now },
   picture: {
@@ -21,7 +20,7 @@ const ownerSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-  idnumber: { type: String, required: true, unique: true },
+  idnumber: { type: String },
 });
 
 const owner = mongoose.model("owner", ownerSchema);

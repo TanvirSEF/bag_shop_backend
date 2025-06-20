@@ -1,15 +1,22 @@
 const express = require("express");
 const router = express.Router();
+const ownerModel = require("../models/owner-model");
 
-// Define your routes here
+if (process.env.NODE_ENV === "development") {
+  router.post("/create", async (req, res) => {
+    let owner = await ownerModel.find();
+    if (owner.length > 0) {
+      return res.status(400).send("Owner already exists");
+    } else {
+      let { fullname, email, password } = req.body;
+      let createdOwner = await ownerModel.create({ fullname, email, password });
+      res.status(201).send(createdOwner);
+    }
+  });
+}
 
 router.get("/", (req, res) => {
   res.send("Owner Home Page");
-});
-
-router.get("/:id", (req, res) => {
-  const ownerId = req.params.id;
-  res.send(`Owner Details for ID: ${ownerId}`);
 });
 
 module.exports = router;
